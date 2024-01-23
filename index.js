@@ -1,5 +1,6 @@
 // Import the Express module
 const express = require('express');
+require('dotenv').config();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
@@ -44,7 +45,8 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 // connect to mongoDB
-mongoose.connect('mongodb+srv://VDT_ADMIN:project@cluster0.dhgn2sl.mongodb.net/?retryWrites=true&w=majority', {
+const mongoURI = process.env.MONGO_URI;
+mongoose.connect(mongoURI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
